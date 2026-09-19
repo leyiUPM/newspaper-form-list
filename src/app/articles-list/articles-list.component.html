@@ -1,0 +1,54 @@
+<main class="container my-4">
+  <h1 class="mb-4">Newspaper form and list</h1>
+
+  <form class="col-md-8" #articleForm="ngForm" (ngSubmit)="publish()">
+    <label class="form-label mt-3" for="title">Title</label>
+    <input class="form-control" id="title" name="title" [(ngModel)]="article.title" #title="ngModel"
+      required minlength="10" maxlength="50" appHighlight>
+    <p class="text-danger" *ngIf="title.invalid && (title.dirty || title.touched)">
+      Title is required and must contain 10–50 characters.
+    </p>
+
+    <label class="form-label mt-3" for="subtitle">Subtitle</label>
+    <input class="form-control" id="subtitle" name="subtitle" [(ngModel)]="article.subtitle" #subtitle="ngModel"
+      required minlength="10" maxlength="50" appHighlight>
+    <p class="text-danger" *ngIf="subtitle.invalid && (subtitle.dirty || subtitle.touched)">
+      Subtitle is required and must contain 10–50 characters.
+    </p>
+
+    <label class="form-label mt-3" for="abstract">Abstract</label>
+    <textarea class="form-control" id="abstract" name="abstract" rows="3" [(ngModel)]="article.abstract" #abstract="ngModel"
+      required minlength="10" appHighlight></textarea>
+    <p class="text-danger" *ngIf="abstract.invalid && (abstract.dirty || abstract.touched)">
+      Abstract is required and must contain at least 10 characters.
+    </p>
+
+    <label class="form-label mt-3" for="body">Body (optional)</label>
+    <textarea class="form-control" id="body" name="body" rows="5" [(ngModel)]="article.body" appHighlight></textarea>
+
+    <label class="form-label mt-3" for="category">Category</label>
+    <select class="form-select" id="category" name="category" [(ngModel)]="article.category" appHighlight>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+
+    <div class="mt-3">
+      <button class="btn btn-primary me-2" type="submit" [disabled]="articleForm.invalid">Publish</button>
+      <button class="btn btn-secondary" type="button" (click)="reset()">Reset</button>
+    </div>
+  </form>
+
+  <p class="mt-3" role="status">{{ message }}</p>
+
+  <h2>Articles</h2>
+  <div class="row row-cols-3 g-3">
+    <div class="col" *ngFor="let article of articles">
+      <article class="card h-100">
+        <div class="card-body text-break">
+          <h3 class="card-title h5">{{ article.title }}</h3>
+          <h4 class="card-subtitle h6 mb-2">{{ article.subtitle }}</h4>
+          <p class="card-text">{{ article.abstract }}</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</main>

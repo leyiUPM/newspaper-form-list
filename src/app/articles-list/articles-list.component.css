@@ -1,0 +1,17 @@
+.ng-valid:not(form) {
+  border: 1px solid green;
+}
+
+.ng-invalid:not(form) {
+  border: 1px solid yellow;
+  background-color: #ffcccc;
+}
+
+/* Focus uses a different red for invalid fields so errors stay visible. */
+.focused.ng-valid {
+  background-color: #e0f2ff;
+}
+
+.focused.ng-invalid {
+  background-color: #ffaaaa;
+}

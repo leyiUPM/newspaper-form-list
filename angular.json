@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "analytics": false
+  },
+  "projects": {
+    "newspaper-form-list": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "outputPath": "dist/newspaper-form-list",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "development": {
+              "buildTarget": "newspaper-form-list:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  }
+}
