@@ -63,7 +63,8 @@ export class ArticlesListComponent {
 
     this.articles.push(article);
     this.reset();
-    this.message = `The article ${article.title} has been published`;
+    // this.message = `The article ${article.title} has been published`;
+    alert(`The article ${article.title} has been published`)
   }
 
   reset(): void {
